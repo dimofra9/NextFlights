@@ -157,18 +157,17 @@
 				} );
 
 				$.each( errors[ section ], function( i, val ) {
-					var $li = $( '<li></li>' ).append(
-						$( '<span class="dashicons dashicons-warning" aria-hidden="true"></span>' )
-					).append(
-						$( '<span class="screen-reader-text"></span>' ).text( wpcf7.configValidator.iconAlt )
-					).append( ' ' );
+					var $li = $( '<li></li>' ).text( val.message );
 
 					if ( val.link ) {
-						$li.append(
-							$( '<a></a>' ).attr( 'href', val.link ).text( val.message )
-						);
-					} else {
-						$li.text( val.message );
+						var $link = $( '<a></a>' ).attr( {
+							'href': val.link,
+							'class': 'external dashicons dashicons-external'
+						} ).append( $( '<span></span>' ).attr( {
+							'class': 'screen-reader-text'
+						} ).text( wpcf7.configValidator.howToCorrect ) );
+
+						$li = $li.append( ' ' ).append( $link );
 					}
 
 					$li.appendTo( $list );
@@ -198,7 +197,7 @@
 				key = key.replace( /^mail_\d+\./, 'mail.' );
 
 				if ( key.replace( /\..*$/, '' ) == tab.replace( '-', '_' ) ) {
-					var $mark = $( '<span class="dashicons dashicons-warning" aria-hidden="true"></span>' );
+					var $mark = $( '<span class="dashicons dashicons-warning"></span>' );
 					$item.find( 'a.ui-tabs-anchor' ).first().append( $mark );
 					return false;
 				}
@@ -209,11 +208,11 @@
 
 			if ( errorCount[ tab.replace( '-', '_' ) ] ) {
 				$tabPanelError
-					.append( '<span class="dashicons dashicons-warning" aria-hidden="true"></span> ' );
+					.append( '<span class="dashicons dashicons-warning"></span> ' );
 
 				if ( 1 < errorCount[ tab.replace( '-', '_' ) ] ) {
 					var manyErrorsInTab = wpcf7.configValidator.manyErrorsInTab
-						.replace( '%d', errorCount[ tab.replace( '-', '_' ) ] );
+						.replace( '%d', errorCount[ tab ] );
 					$tabPanelError.append( manyErrorsInTab );
 				} else {
 					$tabPanelError.append( wpcf7.configValidator.oneErrorInTab );
@@ -226,7 +225,7 @@
 		if ( errorCount.total ) {
 			var $warning = $( '<div></div>' )
 				.addClass( 'misc-pub-section config-error' )
-				.append( '<span class="dashicons dashicons-warning" aria-hidden="true"></span> ' );
+				.append( '<span class="dashicons dashicons-warning"></span> ' );
 
 			if ( 1 < errorCount.total ) {
 				$warning.append(
@@ -236,11 +235,14 @@
 				$warning.append( wpcf7.configValidator.oneError );
 			}
 
-			$warning.append( '<br />' ).append(
-				$( '<a></a>' )
-					.attr( 'href', wpcf7.configValidator.docUrl )
-					.text( wpcf7.configValidator.howToCorrect )
-			);
+			var $link = $( '<a></a>' ).attr( {
+				'href': wpcf7.configValidator.docUrl,
+				'class': 'external dashicons dashicons-external'
+			} ).append( $( '<span></span>' ).attr( {
+				'class': 'screen-reader-text'
+			} ).text( wpcf7.configValidator.howToCorrect ) );
+
+			$warning.append( ' ' ).append( $link );
 
 			$( '#misc-publishing-actions' ).append( $warning );
 		}

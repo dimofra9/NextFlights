@@ -128,18 +128,6 @@ function filter_intergeo_map_settings( $options ) {
 }`
 
 ## Changelog ##
-### 2.2.3 - 2018-03-12  ###
-
-* Improves copy maps workflow. 
-* Update ThemeIsle SDK.
-
-
-### 2.2.2 - 2018-01-05  ###
-
-* Improves compatibility with latest WordPress version.
-* Sync ThemeIsle SDK.
-
-
 ### 2.2.1 - 2017-11-13  ###
 
 * Fix minor issue with markers.

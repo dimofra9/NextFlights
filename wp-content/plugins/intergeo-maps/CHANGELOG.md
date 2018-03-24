@@ -1,16 +1,7 @@
 
- ### v2.2.3 - 2018-03-12 
+ ### v2.2.1 - 2017-11-16 
  **Changes:** 
-  
- ### v2.2.3 - 2018-03-12 
- **Changes:** 
- * Improves copy maps workflow. 
-* Update ThemeIsle SDK.
- 
- ### v2.2.2 - 2018-01-05 
- **Changes:** 
- * Improves compatibility with latest WordPress version.
-* Sync ThemeIsle SDK.
+ * Adds compatibility with WordPress 4.9.
  
  ### v2.2.1 - 2017-11-13 
  **Changes:** 
